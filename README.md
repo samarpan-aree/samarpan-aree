@@ -2,19 +2,24 @@
 
 # Samarpan Aree
 
-**IT & software engineering — full-stack applications, automation tooling, developer utilities.**
+**IT & software engineering — security tooling, backend APIs, developer utilities.**
 
-[![GitHub](https://img.shields.io/badge/GitHub-Samarpan_Aree-181717?style=flat-square&logo=github)](https://github.com/ROYAL-SMP)
-[![Location](https://img.shields.io/badge/Kathmandu-Nepal-0f766e?style=flat-square)](https://github.com/ROYAL-SMP)
-[![Open to work](https://img.shields.io/badge/status-open_to_work-16a34a?style=flat-square)](https://github.com/ROYAL-SMP)
+[![GitHub](https://img.shields.io/badge/GitHub-samarpan--aree-181717?style=flat-square&logo=github)](https://github.com/samarpan-aree)
+[![Location](https://img.shields.io/badge/Kathmandu-Nepal-0f766e?style=flat-square)](https://github.com/samarpan-aree)
+[![Open to work](https://img.shields.io/badge/status-open_to_work-16a34a?style=flat-square)](https://github.com/samarpan-aree)
+[![Repos](https://img.shields.io/badge/public_repos-5-blue?style=flat-square)](https://github.com/samarpan-aree?tab=repositories)
 
 </div>
 
 ---
 
-I build software that holds up under review: tested, documented, and shipped with CI. My work spans backend APIs, data-heavy tooling, and the developer-experience layer around them — the parts that decide whether a codebase stays maintainable after the first month.
+I build software that holds up under review: tested, documented, and shipped with
+CI. My work sits in two places — **security tooling** that turns noisy signal into
+something a human can act on, and the **backend and DX layer** around it, because
+that is what decides whether a codebase is still maintainable after month one.
 
-Most of what is here started as a concrete annoyance I wanted gone. `repolint` exists because reviewing repositories by eye is unreliable. Everything I publish runs, and every repository ships with a test suite you can execute.
+Every repository below runs. Every one ships with a test suite you can execute in
+under a second, and no runtime dependencies unless the problem genuinely requires them.
 
 ## Tech stack
 
@@ -27,30 +32,35 @@ Most of what is here started as a concrete annoyance I wanted gone. `repolint` e
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat-square&logo=github-actions&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
 
-## Current focus
-
-- **Backend engineering** — typed APIs, explicit schemas, tests that isolate a single behaviour.
-- **Developer tooling** — CLIs and linters that encode a standard instead of asking people to remember it.
-- **Testing discipline** — CI that gates merges on something real, not a green checkmark.
-
 ## Featured work
 
 | Repository | What it does |
 | --- | --- |
-| **[uptimekit](https://github.com/ROYAL-SMP/uptimekit)** | Self-hosted API uptime and latency monitoring. FastAPI + React + SQLite, shields.io badge endpoint, 65 tests, Docker Compose. |
-| **[repolint](https://github.com/ROYAL-SMP/repolint)** | Zero-dependency CLI that scores any repository against a 7-point professional checklist. Weighted 0–100 grade, JSON output, `--min-score` CI gate. |
+| **[sshwatch](https://github.com/samarpan-aree/sshwatch)** | Reads SSH auth logs and reports the three findings that matter: brute force, credential spraying, and accounts that were actually compromised. Persistence-gated so scanner noise stays out. Offline, zero dependencies, 99 tests, SARIF output. |
+| **[leakscan](https://github.com/samarpan-aree/leakscan)** | Secret and credential scanner with 24 vendor patterns and Shannon-entropy gating, so `your_api_key_here` does not appear in the report. Redaction happens at finding-creation time — there is no code path that emits a full secret. |
+| **[posturekit](https://github.com/samarpan-aree/posturekit)** | External security posture in one pass: HTTP security headers, cookie flags, TLS configuration and DNS email authentication (SPF/DKIM/DMARC). Weighted 0–100 grade, SARIF for code scanning. |
+| **[uptimekit](https://github.com/samarpan-aree/uptimekit)** | Self-hosted API uptime and latency monitoring. FastAPI + React + SQLite, with a shields.io badge endpoint. No external services, no third-party data retention. 65 tests. |
+| **[repolint](https://github.com/samarpan-aree/repolint)** | Zero-dependency CLI that scores any repository against a seven-point professional checklist. Weighted 0–100 with a letter grade and `--min-score` gating for CI. |
 
-## GitHub stats
+Four of the five are security tools, and that is deliberate: it is the domain
+where precision matters most. A scanner that reports everything gets switched
+off, and a scanner that is off catches nothing — so each of these is built around
+what it must *not* report, and the test suites assert the silence cases as
+carefully as the detections.
 
-<div align="center">
+## What I care about
 
-![Stats](https://github-readme-stats.vercel.app/api?username=ROYAL-SMP&show_icons=true&hide_border=true&include_all_commits=true&count_private=true&title_color=0f766e&icon_color=0f766e)
-![Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=ROYAL-SMP&layout=compact&hide_border=true&langs_count=6&title_color=0f766e)
-
-</div>
+- **Tests that assert behaviour at the boundary.** The off-by-one at a threshold
+  is the bug that ships; a test against a big fixture log hides it.
+- **Zero dependencies where possible.** A tool you drop onto a locked-down host
+  should not add an audit surface.
+- **Honest limitations.** Every README here has a "limits worth knowing" section.
+  A tool that hides its failure modes cannot be trusted with its successes.
+- **CI that gates on something real.** Not a green checkmark — an actual exit code
+  that fails the build.
 
 ---
 
 <div align="center">
-<sub>Open to backend, platform, and full-stack roles. Reach out through GitHub.</sub>
+<sub>Open to backend, platform and full-stack roles. Reach out through GitHub.</sub>
 </div>
